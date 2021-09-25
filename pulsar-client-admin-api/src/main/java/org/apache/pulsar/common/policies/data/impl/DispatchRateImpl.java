@@ -69,6 +69,9 @@ public final class DispatchRateImpl implements DispatchRate {
         }
 
         public DispatchRateImpl build() {
+            if (ratePeriodInSecond <= 0) {
+                throw new IllegalArgumentException("ratePeriodInSecond should not be larger than zero.");
+            }
             return new DispatchRateImpl(dispatchThrottlingRateInMsg, dispatchThrottlingRateInByte,
                     relativeToPublishRate, ratePeriodInSecond);
         }
